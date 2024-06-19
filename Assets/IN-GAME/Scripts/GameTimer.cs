@@ -54,7 +54,6 @@ namespace safariSort
             {
                 StopCoroutine(timerRef);
             }
-            print("TIME UPDATED"+currentTime);
 
             if (PlayerPrefs.GetFloat(BestTimePrefKey, 0)==0)
             {

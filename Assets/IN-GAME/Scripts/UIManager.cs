@@ -138,7 +138,6 @@ namespace safariSort
         private void SetBestTime()
         {
             float time = PlayerPrefs.GetFloat(gameTimer.BestTimePrefKey, 0);
-            print(time);
             int minutes = Mathf.FloorToInt(time / 60);
             int seconds = Mathf.FloorToInt(time % 60);
             BestTimeText.text = string.Format("Best Time - {0:00}:{1:00}", minutes, seconds);
