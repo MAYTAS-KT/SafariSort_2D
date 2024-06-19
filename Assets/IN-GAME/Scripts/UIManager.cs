@@ -27,9 +27,13 @@ namespace safariSort
         [SerializeField] Image audioIcon;
         [SerializeField] Sprite audioOn;
         [SerializeField] Sprite audioOff;
-        
 
+        [Header("TEXT")]
         [SerializeField] TextMeshProUGUI PausePanelText;
+        [SerializeField] TextMeshProUGUI BestTimeText;
+
+        [Header("SCRIPT REF")]
+        [SerializeField] GameTimer gameTimer;
         private AudioManager audioManager;
 
         private void Start()
@@ -39,6 +43,8 @@ namespace safariSort
                 audioManager = AudioManager.instance;
                 SetAudioIcon();
             }
+
+            SetBestTime();
 
             playBtn.onClick.AddListener(Play);
             optionsBtn.onClick.AddListener(Options);
@@ -112,6 +118,15 @@ namespace safariSort
             GamePanel.SetActive(false);
             PausePanel.SetActive(false);
             audioManager.PlayClicKSound();
+        }
+
+        private void SetBestTime()
+        {
+            float time = PlayerPrefs.GetFloat(gameTimer.BestTimePrefKey, 0);
+            print(time);
+            int minutes = Mathf.FloorToInt(time / 60);
+            int seconds = Mathf.FloorToInt(time % 60);
+            BestTimeText.text = string.Format("Best Time - {0:00}:{1:00}", minutes, seconds);
         }
     }
 }

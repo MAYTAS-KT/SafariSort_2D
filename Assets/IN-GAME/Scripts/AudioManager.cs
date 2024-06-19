@@ -8,6 +8,7 @@ namespace safariSort
     {
         public static AudioManager instance;
 
+        [Header("AUIDO CLIPS")]
         public AudioClip mainMenuMusic;
         public AudioClip gameMusic;
         public AudioClip correctGuessClip;
@@ -17,14 +18,12 @@ namespace safariSort
         public AudioClip errorClip;
         public AudioClip ClickClip;
 
+        [Header("AUIDO SOURCE")]
         [SerializeField] AudioSource musicSource;
         [SerializeField] AudioSource soundEffectSource;
 
-        //USED FOR FADE EFFECT
-        private const string AudioPrefKey = "AudioEnabled";
-
-        private float targetVolume = 1.0f;
-        private float fadeSpeed = 0f;
+        [Header("PLAYER PREFS")]
+        public const string AudioPrefKey = "AudioEnabled";
 
         private void Awake()
         {

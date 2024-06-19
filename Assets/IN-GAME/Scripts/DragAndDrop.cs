@@ -1,24 +1,33 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using static safariSort.GameData;
 
 namespace safariSort
 {
     public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-       
-        [SerializeField] HabitatType habitatType;
+        [Header("Animal Data")]
+        public HabitatType[] possibleHabitat;
+        public Image animalImage;
+        public TextMeshProUGUI animalText;
 
         private int startChildIndex;
         private Transform parentToReturnTo = null;
         private CanvasGroup canvasGroup;
 
-        
+
         private void Start()
         {
-          canvasGroup=GetComponent<CanvasGroup>();
-          //GetComponentInChildren<TextMeshProUGUI>().text = gameObject.name;
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        public void SetUpPrefab(AnimalData animalData)
+        {
+            possibleHabitat = animalData.possibleHabitat;
+            animalImage.sprite = animalData.animalSprite;
+            animalText.text=animalData.animalName;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -28,6 +37,7 @@ namespace safariSort
                 AudioManager.instance.PlayClicKSound();
             }
             GameManager.instance.AnimalLayoutGroup(false);//Stop Arranging Animal Layout group
+            animalText.enabled=false;
             transform.localScale *= 1.25f;
             startChildIndex = transform.GetSiblingIndex();
             parentToReturnTo = transform.parent;
@@ -50,16 +60,22 @@ namespace safariSort
             {
                
                 Debug.Log("Enetred");
-                if (habitat.habitatType==habitatType)
-                {
 
-                    GameManager.instance.CorrectGuess();//selected correct habitat
-                    Destroy(gameObject);
-                }
-                else
+                for (int i = 0; i < possibleHabitat.Length; i++)
                 {
-                    GameManager.instance.WrongGuess();//selected wrong habitat
-                    Destroy(gameObject);
+                    HabitatType item = possibleHabitat[i];
+                    if (habitat.habitatType == item)
+                    {
+
+                        GameManager.instance.CorrectGuess();//selected correct habitat
+                        Destroy(gameObject);
+                    }
+                    else if(i==possibleHabitat.Length-1)
+                    {
+                        GameManager.instance.WrongGuess();//selected wrong habitat
+                        Destroy(gameObject);
+                    }
+
                 }
 
                 if (parentToReturnTo.transform.GetChildCount()==0)
@@ -67,12 +83,13 @@ namespace safariSort
                     GameManager.instance.AllAnimalSorted();
                 }
             }
-            else
+            else//Return back to original pos
             {
                 if (AudioManager.instance!=null)
                 {
                     AudioManager.instance.PlayErrorSound();
                 }
+                animalText.enabled = true;
                 canvasGroup.blocksRaycasts = true;
                 transform.SetParent(parentToReturnTo, false);
                 transform.SetSiblingIndex(startChildIndex);
