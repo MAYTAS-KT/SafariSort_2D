@@ -21,73 +21,73 @@ MonoBehaviour:
   - habitatName: Ocean
     habitatType: 1
     habitatSprite: {fileID: 21300000, guid: ed155e4a19a845747b591141831e2893, type: 3}
-  - habitatName: Desert
-    habitatType: 3
-    habitatSprite: {fileID: 21300000, guid: 54d94bfe02bf5ba46946cd644baace63, type: 3}
   - habitatName: Farm
     habitatType: 2
     habitatSprite: {fileID: 21300000, guid: 0e47f3b8d42014d48967323ac985e231, type: 3}
+  - habitatName: Desert
+    habitatType: 3
+    habitatSprite: {fileID: 21300000, guid: 54d94bfe02bf5ba46946cd644baace63, type: 3}
   animals:
-  - animalName: Camel
-    animalSprite: {fileID: -1699129202, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 0300000002000000
-  - animalName: Tiger
-    animalSprite: {fileID: -1302924461, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 00000000
-  - animalName: Gorilla
-    animalSprite: {fileID: -939921862, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 00000000
-  - animalName: Lion
-    animalSprite: {fileID: -1883602889, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 00000000
-  - animalName: Elephant
-    animalSprite: {fileID: -1958551613, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 00000000
-  - animalName: Snake
-    animalSprite: {fileID: 305910754, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 0000000003000000
+  - animalName: Seal
+    animalSprite: {fileID: 1483186595, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 01000000
+  - animalName: Octopus
+    animalSprite: {fileID: 21300000, guid: 30467840065d5b94e91671f13bce0967, type: 3}
+    possibleHabitat: 01000000
   - animalName: Eagle
     animalSprite: {fileID: 1406410521, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
     possibleHabitat: 0300000000000000
-  - animalName: Chameleon
-    animalSprite: {fileID: 753001056, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 0000000003000000
-  - animalName: Duck
-    animalSprite: {fileID: 1840376782, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 02000000
+  - animalName: Frog
+    animalSprite: {fileID: -1175311202, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+    possibleHabitat: 0000000001000000
   - animalName: Cow
     animalSprite: {fileID: 703501078, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 02000000
-  - animalName: Horse
-    animalSprite: {fileID: 1563993714, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 02000000
-  - animalName: Dog
-    animalSprite: {fileID: -456497826, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 02000000
-  - animalName: Pig
-    animalSprite: {fileID: -506220150, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 02000000
-  - animalName: Hen
-    animalSprite: {fileID: -360536219, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
     possibleHabitat: 02000000
   - animalName: Turtle
     animalSprite: {fileID: 199734458, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
     possibleHabitat: 01000000
-  - animalName: Seal
-    animalSprite: {fileID: 1483186595, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 01000000
-  - animalName: Frog
-    animalSprite: {fileID: -1175311202, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
-    possibleHabitat: 0000000001000000
+  - animalName: Horse
+    animalSprite: {fileID: 1563993714, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 02000000
+  - animalName: Chameleon
+    animalSprite: {fileID: 753001056, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 0000000003000000
   - animalName: Crocodile
     animalSprite: {fileID: 828169557, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
     possibleHabitat: 0100000000000000
-  - animalName: Octopus
-    animalSprite: {fileID: 21300000, guid: 30467840065d5b94e91671f13bce0967, type: 3}
-    possibleHabitat: 01000000
+  - animalName: Camel
+    animalSprite: {fileID: -1699129202, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 0300000002000000
+  - animalName: Elephant
+    animalSprite: {fileID: -1958551613, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+    possibleHabitat: 00000000
+  - animalName: Monkey
+    animalSprite: {fileID: 1590985938, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+    possibleHabitat: 00000000
+  - animalName: Tiger
+    animalSprite: {fileID: -1302924461, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+    possibleHabitat: 00000000
+  - animalName: Snake
+    animalSprite: {fileID: 305910754, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 0000000003000000
   - animalName: Scorpion
     animalSprite: {fileID: 21300000, guid: 7d9571eeeb6f78d4483f06b577cb6a13, type: 3}
     possibleHabitat: 0300000000000000
-  - animalName: Monkey
-    animalSprite: {fileID: 1590985938, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+  - animalName: Dog
+    animalSprite: {fileID: -456497826, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+    possibleHabitat: 02000000
+  - animalName: Lion
+    animalSprite: {fileID: -1883602889, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
+    possibleHabitat: 00000000
+  - animalName: Duck
+    animalSprite: {fileID: 1840376782, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 02000000
+  - animalName: Hen
+    animalSprite: {fileID: -360536219, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 02000000
+  - animalName: Pig
+    animalSprite: {fileID: -506220150, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
+    possibleHabitat: 02000000
+  - animalName: Gorilla
+    animalSprite: {fileID: -939921862, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
     possibleHabitat: 00000000

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static safariSort.GameData;
 
 
 namespace safariSort
@@ -13,6 +15,9 @@ namespace safariSort
         private AudioManager audioManager;
         [SerializeField] LayoutGroup animalLayoutGroup;
         [SerializeField] LayoutGroup habitatGroupLayout;
+
+        public List<AnimalData> shuffledAnimals;
+        public List<HabitatData> shuffledHabitats;
 
         private void Awake()
         {
@@ -33,6 +38,12 @@ namespace safariSort
                 audioManager = AudioManager.instance;
             }
 
+            shuffledAnimals = new List<AnimalData>(gameData.animals);
+            shuffledHabitats = new List<HabitatData>(gameData.habitats);
+
+            ShuffleList(shuffledAnimals);
+            ShuffleList(shuffledHabitats);
+
             SpawnAnimals();
             SpawnHabitats();
 
@@ -41,13 +52,12 @@ namespace safariSort
             gameTimer.onTimeUp.AddListener(TimeUp);
 
         }
-
-       
+      
 
         public void SpawnAnimals()
         {
             DragAndDrop temp;
-            foreach (var animalData in gameData.animals)
+            foreach (var animalData in shuffledAnimals)
             {
                 // Instantiate the animal prefab and get its DragAndDrop component
                 GameObject newAnimal = Instantiate(gameData.animalPrefab, animalLayoutGroup.transform);
@@ -58,12 +68,13 @@ namespace safariSort
                 temp.possibleHabitat = animalData.possibleHabitat;
                 temp.animalImage.sprite = animalData.animalSprite;
             }
+            
         }
 
         public void SpawnHabitats()
         {
             Habitat temp;
-            foreach (var habitatData in gameData.habitats)
+            foreach (var habitatData in shuffledHabitats)
             {
                 // Instantiate the animal prefab and get its DragAndDrop component
                 GameObject newAnimal = Instantiate(gameData.habitatPrefab, habitatGroupLayout.transform);
@@ -108,6 +119,21 @@ namespace safariSort
         {
             animalLayoutGroup.enabled = isEnabled;
         }
+
+        #region Shuffle Logic
+
+        private void ShuffleList<T>(List<T> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, i + 1);
+                T temp = list[i];
+                list[i] = list[randomIndex];
+                list[randomIndex] = temp;
+            }
+        }
+
+        #endregion
 
     }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace safariSort
@@ -23,8 +24,8 @@ namespace safariSort
 
         public GameObject habitatPrefab;
         public GameObject animalPrefab;
-        public HabitatData[] habitats;
-        public AnimalData[] animals;
+        public List<HabitatData> habitats;
+        public List<AnimalData> animals;
 
     }
 }
