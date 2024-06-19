@@ -8,20 +8,28 @@ namespace safariSort
     {
         [SerializeField] GameObject mainMenu;
         [SerializeField] GameObject GamePanel;
+        private AudioManager audioManager;
 
+        private void Start()
+        {
+            if (AudioManager.instance != null)
+            {
+                audioManager = AudioManager.instance;
+            }
+        }
         public void PlayButton()
         {
             mainMenu.SetActive(false);
             GamePanel.SetActive(true);
 
-            if (AudioManager.instance != null)
-            {
-                AudioManager.instance.PlayGameMusic();
-            }
+            audioManager.PlayClicKSound();
+            audioManager.CrossfadeToGameMusic();
+
         }
 
         public void QuitButton()
         {
+            audioManager.PlayClicKSound();
             Application.Quit();
         }
     }

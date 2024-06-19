@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace safariSort
@@ -17,6 +19,10 @@ namespace safariSort
 
         [SerializeField] AudioSource musicSource;
         [SerializeField] AudioSource soundEffectSource;
+
+        //USED FOR FADE EFFECT
+        private float targetVolume = 1.0f;
+        private float fadeSpeed = 0f;
 
         private void Awake()
         {
@@ -47,21 +53,13 @@ namespace safariSort
             PlayMainMenuMusic();
         }
 
-        public void PlayMainMenuMusic()
-        {
-            PlayMusic(mainMenuMusic);
-        }
-
+       
         public void PlayClicKSound()
         {
             PlaySoundEffect(ClickClip);
         }
 
-        public void PlayGameMusic()
-        {
-            PlayMusic(gameMusic);
-        }
-
+       
         private void PlayMusic(AudioClip clip)
         {
             if (musicSource.clip != clip)
@@ -125,5 +123,56 @@ namespace safariSort
         {
             return musicSource.clip == gameMusic && musicSource.isPlaying;
         }
+
+        #region BG MUSIC
+        public void PlayMainMenuMusic()
+        {
+            if (musicSource.clip != mainMenuMusic)
+            {
+                musicSource.clip = mainMenuMusic;
+                musicSource.loop = true;
+                musicSource.Play();
+            }
+        }
+
+        public void PlayGameMusic()
+        {
+            if (musicSource.clip != gameMusic)
+            {
+                musicSource.clip = gameMusic;
+                musicSource.loop = true;
+                musicSource.Play();
+            }
+        }
+
+        public void CrossfadeToGameMusic()
+        {
+            if (musicSource.clip != gameMusic)
+            {
+                CrossfadeCoroutine(gameMusic);
+            }
+        }
+
+        public void CrossfadeToMainMenuMusic()
+        {
+            if (musicSource.clip != mainMenuMusic)
+            {
+               CrossfadeCoroutine(mainMenuMusic);
+            }
+        }
+
+        private void CrossfadeCoroutine(AudioClip newClip)
+        {
+            Debug.Log("FADE");
+           
+            musicSource.Stop();
+            musicSource.clip = newClip;
+            musicSource.Play();
+
+           
+            Debug.Log("FADE end");
+        }
+
+        #endregion
     }
 }
