@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace safariSort
@@ -7,6 +8,7 @@ namespace safariSort
     {
         public static GameManager instance;
         private AudioManager audioManager;
+        [SerializeField] LayoutGroup animalLayoutGroup;
 
         private void Awake()
         {
@@ -44,6 +46,11 @@ namespace safariSort
         {
             Debug.Log("ALL ANIMAL SORTED");
             audioManager.PlayWinSound();
+        }
+
+        public void AnimalLayoutGroup(bool isEnabled)
+        {
+            animalLayoutGroup.enabled = isEnabled;
         }
 
     }

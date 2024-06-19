@@ -27,6 +27,7 @@ namespace safariSort
             {
                 AudioManager.instance.PlayClicKSound();
             }
+            GameManager.instance.AnimalLayoutGroup(false);//Stop Arranging Animal Layout group
             transform.localScale *= 1.25f;
             startChildIndex = transform.GetSiblingIndex();
             parentToReturnTo = transform.parent;
@@ -35,8 +36,8 @@ namespace safariSort
 
         public void OnDrag(PointerEventData eventData)
         {
+
             transform.position = eventData.position;
-           
             canvasGroup.alpha = 0.75f;
             canvasGroup.blocksRaycasts = false;
         }
@@ -45,7 +46,6 @@ namespace safariSort
         public void OnEndDrag(PointerEventData eventData)
         {
             canvasGroup.alpha = 1f;
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Habitat habitat))
             {
                
@@ -79,6 +79,7 @@ namespace safariSort
                 transform.localScale=Vector3.one;
             }
 
+            GameManager.instance.AnimalLayoutGroup(true);//Arrange Animal Layout group
         }
 
     }
