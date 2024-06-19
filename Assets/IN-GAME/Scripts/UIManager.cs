@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 namespace safariSort
@@ -6,18 +7,22 @@ namespace safariSort
     public class UIManager : MonoBehaviour
     {
         [SerializeField] GameObject mainMenu;
-        [SerializeField] GameObject PausePanel;
+        [SerializeField] GameObject GamePanel;
 
-        // Start is called before the first frame update
-        void Start()
+        public void PlayButton()
         {
+            mainMenu.SetActive(false);
+            GamePanel.SetActive(true);
 
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayGameMusic();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        public void QuitButton()
         {
-
+            Application.Quit();
         }
     }
 }

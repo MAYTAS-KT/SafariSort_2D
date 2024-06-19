@@ -23,6 +23,10 @@ namespace safariSort
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayClicKSound();
+            }
             transform.localScale *= 1.25f;
             startChildIndex = transform.GetSiblingIndex();
             parentToReturnTo = transform.parent;
@@ -65,6 +69,10 @@ namespace safariSort
             }
             else
             {
+                if (AudioManager.instance!=null)
+                {
+                    AudioManager.instance.PlayErrorSound();
+                }
                 canvasGroup.blocksRaycasts = true;
                 transform.SetParent(parentToReturnTo, false);
                 transform.SetSiblingIndex(startChildIndex);
