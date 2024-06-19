@@ -21,6 +21,8 @@ namespace safariSort
         [SerializeField] AudioSource soundEffectSource;
 
         //USED FOR FADE EFFECT
+        private const string AudioPrefKey = "AudioEnabled";
+
         private float targetVolume = 1.0f;
         private float fadeSpeed = 0f;
 
@@ -50,6 +52,12 @@ namespace safariSort
 
         private void Start()
         {
+            // Load audio preference on start
+            bool audioEnabled = PlayerPrefs.GetInt(AudioPrefKey, 1) == 1; // Default to true if not set
+
+            // Set initial audio state
+            AudioListener.volume = audioEnabled ? 1 : 0;
+
             PlayMainMenuMusic();
         }
 
@@ -145,32 +153,50 @@ namespace safariSort
             }
         }
 
-        public void CrossfadeToGameMusic()
+        public void ChangeToGameMusic()
         {
             if (musicSource.clip != gameMusic)
             {
-                CrossfadeCoroutine(gameMusic);
+                BGAudioChange(gameMusic);
             }
         }
 
-        public void CrossfadeToMainMenuMusic()
+        public void ChangeToMainMenuMusic()
         {
             if (musicSource.clip != mainMenuMusic)
             {
-               CrossfadeCoroutine(mainMenuMusic);
+               BGAudioChange(mainMenuMusic);
             }
         }
 
-        private void CrossfadeCoroutine(AudioClip newClip)
+        private void BGAudioChange(AudioClip newClip)
         {
-            Debug.Log("FADE");
-           
             musicSource.Stop();
             musicSource.clip = newClip;
             musicSource.Play();
+        }
 
-           
-            Debug.Log("FADE end");
+        #endregion
+
+        #region Audio Button
+
+        public void ToggleAudio()
+        {
+            bool audioEnabled = !IsAudioEnabled();
+            SetAudioEnabled(audioEnabled);
+        }
+
+        public void SetAudioEnabled(bool enabled)
+        {
+            PlayerPrefs.SetInt(AudioPrefKey, enabled ? 1 : 0);
+            PlayerPrefs.Save();
+
+            AudioListener.volume = enabled ? 1 : 0;
+        }
+
+        public bool IsAudioEnabled()
+        {
+            return PlayerPrefs.GetInt(AudioPrefKey, 1) == 1;
         }
 
         #endregion
