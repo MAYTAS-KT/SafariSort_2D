@@ -55,6 +55,18 @@ namespace safariSort
             resumeBtn.onClick.AddListener(Resume);
             audioBtn.onClick.AddListener(audioManager.ToggleAudio);
             audioBtn.onClick.AddListener(SetAudioIcon);
+            restartBtn.onClick.AddListener(RestartGame);
+        }
+
+        private void RestartGame()
+        {
+            Time.timeScale = 1;
+            audioManager.PlayClicKSound();
+            GameManager.instance.LoadGame();
+            GamePanel.SetActive(true);
+            mainMenu.SetActive(false);
+            PausePanel.SetActive(false);
+
         }
 
         private void SetAudioIcon()
@@ -84,7 +96,7 @@ namespace safariSort
         {
             mainMenu.SetActive(false);
             GamePanel.SetActive(true);
-
+            GameManager.instance.LoadGame();
             audioManager.PlayClicKSound();
             audioManager.ChangeToGameMusic();
 
@@ -98,6 +110,7 @@ namespace safariSort
         private void Setting()
         {
             PausePanelText.text = "PAUSED";
+            Time.timeScale = 0;
             resumeBtn.gameObject.SetActive(true);
             restartBtn.gameObject.SetActive(true);
             PausePanel.SetActive(true);
@@ -107,6 +120,7 @@ namespace safariSort
 
         private void Resume()
         {
+            Time.timeScale = 1;
             GamePanel.SetActive(true);
             PausePanel.SetActive(false);
             audioManager.PlayClicKSound();
@@ -114,6 +128,7 @@ namespace safariSort
 
         private void MainMenu()
         {
+            Time.timeScale = 1;
             mainMenu.SetActive(true);
             GamePanel.SetActive(false);
             PausePanel.SetActive(false);

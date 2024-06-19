@@ -18,8 +18,13 @@ namespace safariSort
         [Header("PLAYER PREFS")]
         public  string BestTimePrefKey = "BestTime";
 
-        private void Start()
+        public void ResetAndStartTimer()
         {
+            if (timerRef != null)
+            {
+                StopCoroutine(timerRef);
+            }
+
             currentTime =0;
             timerRef = TimerCoroutine();
             StartCoroutine(timerRef);

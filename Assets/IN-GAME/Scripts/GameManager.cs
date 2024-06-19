@@ -9,15 +9,17 @@ namespace safariSort
 {
     public class GameManager : MonoBehaviour
     {
+
         [SerializeField] GameTimer gameTimer;
         [SerializeField] GameData gameData;
-        public static GameManager instance;
         private AudioManager audioManager;
         [SerializeField] LayoutGroup animalLayoutGroup;
         [SerializeField] LayoutGroup habitatGroupLayout;
 
-        public List<AnimalData> shuffledAnimals;
-        public List<HabitatData> shuffledHabitats;
+
+        public static GameManager instance;
+        private List<AnimalData> shuffledAnimals;
+        private List<HabitatData> shuffledHabitats;
 
         private void Awake()
         {
@@ -41,6 +43,10 @@ namespace safariSort
             shuffledAnimals = new List<AnimalData>(gameData.animals);
             shuffledHabitats = new List<HabitatData>(gameData.habitats);
 
+        }
+
+        public void LoadGame()
+        {
             ShuffleList(shuffledAnimals);
             ShuffleList(shuffledHabitats);
 
@@ -48,15 +54,22 @@ namespace safariSort
             SpawnHabitats();
 
 
-            gameTimer.enabled = true;
+            gameTimer.ResetAndStartTimer();
             gameTimer.onTimeUp.AddListener(TimeUp);
-
         }
-      
 
         public void SpawnAnimals()
         {
             DragAndDrop temp;
+
+            if (animalLayoutGroup.transform.childCount >0)//USED FOR RESETTING 
+            {
+                foreach (Transform child in animalLayoutGroup.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
             foreach (var animalData in shuffledAnimals)
             {
                 // Instantiate the animal prefab and get its DragAndDrop component
@@ -74,6 +87,15 @@ namespace safariSort
         public void SpawnHabitats()
         {
             Habitat temp;
+
+            if (habitatGroupLayout.transform.childCount > 0)//USED FOR RESETTING 
+            {
+                foreach (Transform child in habitatGroupLayout.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
             foreach (var habitatData in shuffledHabitats)
             {
                 // Instantiate the animal prefab and get its DragAndDrop component

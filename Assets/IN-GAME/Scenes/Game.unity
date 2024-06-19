@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a713a8b0e82d6e44916c2f510df2730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimer: {fileID: 992146654}
+  gameTimer: {fileID: 1577410155}
   gameData: {fileID: 11400000, guid: 3b0d6f8a1fa9c1346aba8d6d590081c4, type: 2}
   animalLayoutGroup: {fileID: 944180367}
   habitatGroupLayout: {fileID: 204462463}
@@ -683,7 +683,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &234074286
 AudioSource:
@@ -895,7 +895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &317548259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,7 +2139,6 @@ GameObject:
   - component: {fileID: 992146651}
   - component: {fileID: 992146653}
   - component: {fileID: 992146652}
-  - component: {fileID: 992146654}
   m_Layer: 5
   m_Name: GameTImer
   m_TagString: Untagged
@@ -2206,23 +2205,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992146650}
   m_CullTransparentMesh: 1
---- !u!114 &992146654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992146650}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba65688e6a604404ab9023a11747beef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 1293388510}
-  onTimeUp:
-    m_PersistentCalls:
-      m_Calls: []
-  BestTimePrefKey: BestTime
 --- !u!1 &1112008385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,7 +2765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1331191893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2862,7 +2844,7 @@ RectTransform:
   - {fileID: 944180366}
   - {fileID: 1127173578}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3078,7 +3060,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395047937}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -3086,8 +3068,8 @@ RectTransform:
   - {fileID: 1459493562}
   - {fileID: 2100986910}
   - {fileID: 1201390047}
-  m_Father: {fileID: 1473994823}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3200,7 +3182,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 317548262}
-  - {fileID: 1395047941}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3232,7 +3213,7 @@ MonoBehaviour:
   audioOff: {fileID: 21300000, guid: b63baeb07a1575b458e8570f910dbc41, type: 3}
   PausePanelText: {fileID: 879130669}
   BestTimeText: {fileID: 1744762205}
-  gameTimer: {fileID: 992146654}
+  gameTimer: {fileID: 1577410155}
 --- !u!1 &1570875403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3290,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570875403}
   m_CullTransparentMesh: 1
+--- !u!1 &1577410154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577410156}
+  - component: {fileID: 1577410155}
+  m_Layer: 0
+  m_Name: GameTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1577410155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577410154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba65688e6a604404ab9023a11747beef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 1293388510}
+  onTimeUp:
+    m_PersistentCalls:
+      m_Calls: []
+  BestTimePrefKey: BestTime
+--- !u!4 &1577410156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577410154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1536.8, y: 1023, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1670036101
 GameObject:
   m_ObjectHideFlags: 0
