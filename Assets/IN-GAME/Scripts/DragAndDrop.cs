@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,9 +14,11 @@ namespace safariSort
         private Transform parentToReturnTo = null;
         private CanvasGroup canvasGroup;
 
+        
         private void Start()
         {
           canvasGroup=GetComponent<CanvasGroup>();
+          //GetComponentInChildren<TextMeshProUGUI>().text = gameObject.name;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
