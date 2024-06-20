@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static safariSort.GameData;
-using static UnityEngine.GraphicsBuffer;
 
 namespace safariSort
 {
     public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [Header("Animal Data")]
-        public HabitatType[] possibleHabitat;
-        public Image animalImage;
-        public TextMeshProUGUI animalText;
+        [SerializeField] HabitatType[] possibleHabitat;
+        [SerializeField] Image animalImage;
+        [SerializeField] TextMeshProUGUI animalText;
 
         private int startChildIndex;
         private Transform parentToReturnTo = null;
@@ -53,18 +52,16 @@ namespace safariSort
             canvasGroup.blocksRaycasts = false;
         }
 
-        [System.Obsolete]
+        
         public void OnEndDrag(PointerEventData eventData)
         {
             canvasGroup.alpha = 1f;
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Habitat habitat))
             {
                 bool hasGussedRight=false;
-                Transform selectedHabitat = eventData.pointerCurrentRaycast.gameObject.transform;
-
                 foreach (var item in possibleHabitat)//Check if any habitat match
                 {
-                    if (item==habitat.habitatType)
+                    if (item==habitat.getHabitatType())
                     {
                         hasGussedRight = true;
                     }
@@ -72,18 +69,18 @@ namespace safariSort
 
                 if (hasGussedRight)
                 {
-                    PerformCorrectAnimation(selectedHabitat,habitat.habitatFrame);
+                    habitat.PerformCorrectAnimation();
                     PerformScaleIntoImageAnimation();
                     AudioManager.instance.PlayCorrectGuessSound();
                 }
                 else
                 {
-                    PerformVibrationAnimation(selectedHabitat,habitat.habitatFrame);
+                    habitat.PerformVibrationAnimation();
                     PerformScaleOutImageAnimation();
                     AudioManager.instance.PlayWrongGuessSound();//selected wrong habitat
                 }
 
-                if (parentToReturnTo.transform.GetChildCount()==0)
+                if (parentToReturnTo.transform.childCount==0)
                 {
                     GameManager.instance.AllAnimalSorted();
                     AudioManager.instance.PlayWinSound();
@@ -105,29 +102,7 @@ namespace safariSort
 
         #region Dotween Functions
 
-        private void PerformVibrationAnimation(Transform target, Image frame)
-        {
-            Color originalColor= frame.color;
-            frame.color= Color.red;
-            target.DOShakePosition(0.5f, 20f, 10, 90f).OnComplete(()=>frame.color=originalColor);
-        }
-
-        private void PerformCorrectAnimation(Transform target,Image frame)
-        {
-            Color originalColor = frame.color;
-            frame.color = Color.green;
-
-            float duration = 0.25f;
-            Vector3 originalScale = target.localScale; 
-            Vector3 targetScale = originalScale * 1.2f; 
-
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(target.DOScale(targetScale, duration / 2).SetEase(Ease.OutQuad));
-            sequence.Append(target.DOScale(originalScale, duration / 2).SetEase(Ease.InQuad));
-            sequence.OnComplete(() => frame.color=originalColor);
-            sequence.Play();
-        }
-
+       
         private void PerformScaleIntoImageAnimation()
         {
             transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => 

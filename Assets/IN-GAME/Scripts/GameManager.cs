@@ -22,8 +22,6 @@ namespace safariSort
         private List<AnimalData> shuffledAnimals;
         private List<HabitatData> shuffledHabitats;
 
-        
-
         private void Awake()
         {
             // Ensure there is only one instance of the GameManager
@@ -56,8 +54,6 @@ namespace safariSort
 
         public void SpawnAnimals()
         {
-            DragAndDrop temp;
-
             if (animalLayoutGroup.transform.childCount >0)//USED FOR RESETTING 
             {
                 foreach (Transform child in animalLayoutGroup.transform)
@@ -70,20 +66,13 @@ namespace safariSort
             {
                 // Instantiate the animal prefab and get its DragAndDrop component
                 GameObject newAnimal = Instantiate(gameData.animalPrefab, animalLayoutGroup.transform);
-                temp = newAnimal.GetComponent<DragAndDrop>();
-
-                // Assign properties to the DragAndDrop component
-                temp.animalText.text = animalData.animalName;
-                temp.possibleHabitat = animalData.possibleHabitat;
-                temp.animalImage.sprite = animalData.animalSprite;
+                newAnimal.GetComponent<DragAndDrop>().SetUpPrefab(animalData);
             }
             
         }
 
         public void SpawnHabitats()
         {
-            Habitat temp;
-
             if (habitatGroupLayout.childCount > 0)//USED FOR RESETTING 
             {
                 foreach (Transform child in habitatGroupLayout)
@@ -94,14 +83,9 @@ namespace safariSort
 
             foreach (var habitatData in shuffledHabitats)
             {
-                // Instantiate the animal prefab and get its DragAndDrop component
+                // Instantiate the animal prefab and get its Habitat component
                 GameObject newHabitat = Instantiate(gameData.habitatPrefab, habitatGroupLayout);
-                temp = newHabitat.GetComponent<Habitat>();
-
-                // Assign properties to the DragAndDrop component
-                temp.HabitatName.text = habitatData.habitatName;
-                temp.habitatType = habitatData.habitatType;
-                temp.habitatImage.sprite = habitatData.habitatSprite;
+                newHabitat.GetComponent<Habitat>().SetUpHabitat(habitatData);
             }
         }
 
