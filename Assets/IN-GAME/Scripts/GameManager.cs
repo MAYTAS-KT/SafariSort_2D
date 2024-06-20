@@ -38,16 +38,19 @@ namespace safariSort
         {
             shuffledAnimals = new List<AnimalData>(gameData.animals);
             shuffledHabitats = new List<HabitatData>(gameData.habitats);
+            {
+                UIManager.loadGame += OnLoadGame;
+            }
+
         }
 
-        public void LoadGame()
+        public void OnLoadGame()
         {
             ShuffleList(shuffledAnimals);
             ShuffleList(shuffledHabitats);
 
             SpawnAnimals();
             SpawnHabitats();
-
 
             gameTimer.ResetAndStartTimer();
         }
@@ -115,6 +118,12 @@ namespace safariSort
         }
 
         #endregion
+
+        public void OnDestroy()
+        {
+            UIManager.loadGame -= OnLoadGame;
+        }
+
     }
 
 }

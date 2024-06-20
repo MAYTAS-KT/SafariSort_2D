@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,8 @@ namespace safariSort
         [SerializeField] TextMeshProUGUI BestTimeText;
         [SerializeField] TextMeshProUGUI BestTimeText_GameOver;
         [SerializeField] TextMeshProUGUI YourTimeText_GameOver;
+
+        public static Action loadGame;
 
         [Header("SCRIPT REF")]
         [SerializeField] GameTimer gameTimer;
@@ -83,7 +86,8 @@ namespace safariSort
         {
             Time.timeScale = 1;
             audioManager.PlayClicKSound();
-            GameManager.instance.LoadGame();
+
+            loadGame?.Invoke();
             GameOverPOpUp.SetActive(false);
             GamePanel.SetActive(true);
             mainMenu.SetActive(false);
@@ -118,7 +122,7 @@ namespace safariSort
         {
             mainMenu.SetActive(false);
             GamePanel.SetActive(true);
-            GameManager.instance.LoadGame();
+            loadGame?.Invoke();
             audioManager.PlayClicKSound();
             audioManager.ChangeToGameMusic();
 

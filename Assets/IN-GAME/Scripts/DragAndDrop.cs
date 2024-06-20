@@ -105,7 +105,7 @@ namespace safariSort
        
         private void PerformScaleIntoImageAnimation()
         {
-            transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => 
+            transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() =>
             Destroy(gameObject)
             );
         }
