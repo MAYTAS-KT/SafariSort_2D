@@ -58,24 +58,26 @@ namespace safariSort
             canvasGroup.alpha = 1f;
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Habitat habitat))
             {
+                bool hasGussedRight=false;
                
-                Debug.Log("Enetred");
-
-                for (int i = 0; i < possibleHabitat.Length; i++)
+                foreach (var item in possibleHabitat)//Check if any habitat match
                 {
-                    HabitatType item = possibleHabitat[i];
-                    if (habitat.habitatType == item)
+                    if (item==habitat.habitatType)
                     {
-
-                        GameManager.instance.CorrectGuess();//selected correct habitat
-                        Destroy(gameObject);
-                    }
-                    else if(i==possibleHabitat.Length-1)
-                    {
-                        GameManager.instance.WrongGuess();//selected wrong habitat
-                        Destroy(gameObject);
+                        hasGussedRight = true;
                     }
                 }
+
+                if (hasGussedRight)
+                {
+                    GameManager.instance.CorrectGuess();//selected correct habitat
+                }
+                else
+                {
+                    GameManager.instance.WrongGuess();//selected wrong habitat
+                }
+
+                Destroy(gameObject);
 
                 if (parentToReturnTo.transform.GetChildCount()==0)
                 {

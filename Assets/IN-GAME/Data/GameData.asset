@@ -57,7 +57,7 @@ MonoBehaviour:
     possibleHabitat: 0100000000000000
   - animalName: Camel
     animalSprite: {fileID: -1699129202, guid: 3f53ff094818bfe47974387c28d5de9d, type: 3}
-    possibleHabitat: 0300000002000000
+    possibleHabitat: 0200000003000000
   - animalName: Elephant
     animalSprite: {fileID: -1958551613, guid: 428f6f023ff0ab74a8d1dae026fc99fc, type: 3}
     possibleHabitat: 00000000

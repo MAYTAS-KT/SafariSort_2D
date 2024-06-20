@@ -59,10 +59,8 @@ namespace safariSort
             {
                 PlayerPrefs.SetFloat(BestTimePrefKey, playerTime);
                 PlayerPrefs.Save();
-                return;
             }
-
-            if (playerTime < PlayerPrefs.GetFloat(BestTimePrefKey, 0))
+            else if (playerTime < PlayerPrefs.GetFloat(BestTimePrefKey, 0))
             {
                 PlayerPrefs.SetFloat(BestTimePrefKey, playerTime);
                 PlayerPrefs.Save();
