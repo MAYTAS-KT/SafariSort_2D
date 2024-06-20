@@ -13,7 +13,6 @@ namespace safariSort
         public AudioClip gameMusic;
         public AudioClip correctGuessClip;
         public AudioClip wrongGuessClip;
-        public AudioClip timeUpClip;
         public AudioClip winClip;
         public AudioClip errorClip;
         public AudioClip ClickClip;
@@ -65,16 +64,6 @@ namespace safariSort
             PlaySoundEffect(ClickClip);
         }
 
-       
-        private void PlayMusic(AudioClip clip)
-        {
-            if (musicSource.clip != clip)
-            {
-                musicSource.clip = clip;
-                musicSource.Play();
-            }
-        }
-
         public void PlayCorrectGuessSound()
         {
             PlaySoundEffect(correctGuessClip);
@@ -83,11 +72,6 @@ namespace safariSort
         public void PlayWrongGuessSound()
         {
             PlaySoundEffect(wrongGuessClip);
-        }
-
-        public void PlayTimeUpSound()
-        {
-            PlaySoundEffect(timeUpClip);
         }
 
         public void PlayWinSound()
@@ -120,32 +104,12 @@ namespace safariSort
             musicSource.Stop();
         }
 
-        public bool IsMainMenuMusicPlaying()
-        {
-            return musicSource.clip == mainMenuMusic && musicSource.isPlaying;
-        }
-
-        public bool IsGameMusicPlaying()
-        {
-            return musicSource.clip == gameMusic && musicSource.isPlaying;
-        }
-
         #region BG MUSIC
         public void PlayMainMenuMusic()
         {
             if (musicSource.clip != mainMenuMusic)
             {
                 musicSource.clip = mainMenuMusic;
-                musicSource.loop = true;
-                musicSource.Play();
-            }
-        }
-
-        public void PlayGameMusic()
-        {
-            if (musicSource.clip != gameMusic)
-            {
-                musicSource.clip = gameMusic;
                 musicSource.loop = true;
                 musicSource.Play();
             }

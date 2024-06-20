@@ -665,7 +665,7 @@ MonoBehaviour:
   mainMenuMusic: {fileID: 8300000, guid: 5f2ea3ff0c9dc6049b9e2769bebb4478, type: 3}
   gameMusic: {fileID: 8300000, guid: 91c36a627e58cd5488637e26b82c7a9f, type: 3}
   correctGuessClip: {fileID: 8300000, guid: 0875e22284baa164abbbea2bd620593e, type: 3}
-  wrongGuessClip: {fileID: 8300000, guid: 2dc6e7723ad58e44784c574153360cf0, type: 3}
+  wrongGuessClip: {fileID: 8300000, guid: 64478cf81c90c044b9df95f8633f8384, type: 3}
   timeUpClip: {fileID: 8300000, guid: 8b9c7bdb7f31c284a9440522b92d9dc9, type: 3}
   winClip: {fileID: 8300000, guid: b914b239fe645c64c8995841aa10dcf0, type: 3}
   errorClip: {fileID: 8300000, guid: 2dc6e7723ad58e44784c574153360cf0, type: 3}

@@ -83,7 +83,6 @@ namespace safariSort
                 if (parentToReturnTo.transform.childCount==0)
                 {
                     GameManager.instance.AllAnimalSorted();
-                    AudioManager.instance.PlayWinSound();
                 }
 
             }
