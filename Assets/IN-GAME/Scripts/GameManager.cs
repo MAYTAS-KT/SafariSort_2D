@@ -55,7 +55,6 @@ namespace safariSort
 
 
             gameTimer.ResetAndStartTimer();
-            gameTimer.onTimeUp.AddListener(TimeUp);
         }
 
         public void SpawnAnimals()
@@ -107,14 +106,6 @@ namespace safariSort
                 temp.habitatType = habitatData.habitatType;
                 temp.habitatImage.sprite = habitatData.habitatSprite;
             }
-        }
-
-
-        public void TimeUp()
-        {
-            audioManager.PlayTimeUpSound();
-            Time.timeScale = 0.0f;
-            //endPanel
         }
 
         public void CorrectGuess()

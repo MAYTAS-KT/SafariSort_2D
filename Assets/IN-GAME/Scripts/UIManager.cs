@@ -12,6 +12,7 @@ namespace safariSort
         [SerializeField] GameObject mainMenu;
         [SerializeField] GameObject GamePanel;
         [SerializeField] GameObject PausePanel;
+        [SerializeField] GameObject GameOverPOpUp;
 
         [Header("BUTTONS")]
         [SerializeField] Button playBtn;
@@ -22,6 +23,8 @@ namespace safariSort
         [SerializeField] Button mainMenuBtn;
         [SerializeField] Button audioBtn;
         [SerializeField] Button restartBtn;
+        [SerializeField] Button restartBtn_GameOver;
+        [SerializeField] Button MenuBtn_GameOver;
 
         [Header("AUDIO TOGGLE")]
         [SerializeField] Image audioIcon;
@@ -31,6 +34,8 @@ namespace safariSort
         [Header("TEXT")]
         [SerializeField] TextMeshProUGUI PausePanelText;
         [SerializeField] TextMeshProUGUI BestTimeText;
+        [SerializeField] TextMeshProUGUI BestTimeText_GameOver;
+        [SerializeField] TextMeshProUGUI YourTimeText_GameOver;
 
         [Header("SCRIPT REF")]
         [SerializeField] GameTimer gameTimer;
@@ -43,7 +48,7 @@ namespace safariSort
                 audioManager = AudioManager.instance;
                 SetAudioIcon();
             }
-
+            gameTimer.onTimeStop.AddListener(ShowWinPopUP);
             SetBestTime();
 
             playBtn.onClick.AddListener(Play);
@@ -51,11 +56,25 @@ namespace safariSort
             quitBtn.onClick.AddListener(Quit);
             settingBtn.onClick.AddListener(Setting);
             mainMenuBtn.onClick.AddListener(MainMenu);
+            MenuBtn_GameOver.onClick.AddListener(MainMenu);
             mainMenuBtn.onClick.AddListener(audioManager.ChangeToMainMenuMusic);
+            MenuBtn_GameOver.onClick.AddListener(audioManager.ChangeToMainMenuMusic);
             resumeBtn.onClick.AddListener(Resume);
             audioBtn.onClick.AddListener(audioManager.ToggleAudio);
             audioBtn.onClick.AddListener(SetAudioIcon);
             restartBtn.onClick.AddListener(RestartGame);
+            restartBtn_GameOver.onClick.AddListener(RestartGame);
+        }
+
+        public void ShowWinPopUP(float playerTime)
+        {
+            int minutes = Mathf.FloorToInt(playerTime / 60);
+            int seconds = Mathf.FloorToInt(playerTime % 60);
+            YourTimeText_GameOver.text = string.Format("Your Time - {0:00}:{1:00}", minutes, seconds);
+            SetBestTime();
+            GameOverPOpUp.SetActive(true);
+            PausePanel.SetActive(false);
+
         }
 
         private void RestartGame()
@@ -63,6 +82,7 @@ namespace safariSort
             Time.timeScale = 1;
             audioManager.PlayClicKSound();
             GameManager.instance.LoadGame();
+            GameOverPOpUp.SetActive(false);
             GamePanel.SetActive(true);
             mainMenu.SetActive(false);
             PausePanel.SetActive(false);
@@ -132,6 +152,7 @@ namespace safariSort
             mainMenu.SetActive(true);
             GamePanel.SetActive(false);
             PausePanel.SetActive(false);
+            GameOverPOpUp.SetActive(false);
             audioManager.PlayClicKSound();
         }
 
@@ -141,6 +162,7 @@ namespace safariSort
             int minutes = Mathf.FloorToInt(time / 60);
             int seconds = Mathf.FloorToInt(time % 60);
             BestTimeText.text = string.Format("Best Time - {0:00}:{1:00}", minutes, seconds);
+            BestTimeText_GameOver.text = string.Format("Best Time - {0:00}:{1:00}", minutes, seconds);
         }
     }
 }

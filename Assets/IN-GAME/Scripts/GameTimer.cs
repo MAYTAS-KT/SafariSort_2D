@@ -11,9 +11,9 @@ namespace safariSort
         [Header("TEXT")]
         public TextMeshProUGUI timerText;
 
-        public UnityEvent onTimeUp; // Event to trigger when time is up
+        public UnityEvent<float> onTimeStop; // Event to trigger when time is up
         private IEnumerator timerRef;
-        private float currentTime;
+        private float playerTime;
 
         [Header("PLAYER PREFS")]
         public  string BestTimePrefKey = "BestTime";
@@ -25,7 +25,7 @@ namespace safariSort
                 StopCoroutine(timerRef);
             }
 
-            currentTime =0;
+            playerTime =0;
             timerRef = TimerCoroutine();
             StartCoroutine(timerRef);
         }
@@ -34,7 +34,7 @@ namespace safariSort
         {
             while (true)
             {
-                currentTime += Time.deltaTime;
+                playerTime += Time.deltaTime;
                 UpdateTimerUI();
                 yield return null;
             }
@@ -42,8 +42,8 @@ namespace safariSort
 
         private void UpdateTimerUI()
         {
-            int minutes = Mathf.FloorToInt(currentTime / 60);
-            int seconds = Mathf.FloorToInt(currentTime % 60);
+            int minutes = Mathf.FloorToInt(playerTime / 60);
+            int seconds = Mathf.FloorToInt(playerTime % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
 
@@ -57,17 +57,20 @@ namespace safariSort
 
             if (PlayerPrefs.GetFloat(BestTimePrefKey, 0)==0)
             {
-                PlayerPrefs.SetFloat(BestTimePrefKey, currentTime);
+                PlayerPrefs.SetFloat(BestTimePrefKey, playerTime);
                 PlayerPrefs.Save();
                 return;
             }
 
-            if (currentTime < PlayerPrefs.GetFloat(BestTimePrefKey, 0))
+            if (playerTime < PlayerPrefs.GetFloat(BestTimePrefKey, 0))
             {
-                PlayerPrefs.SetFloat(BestTimePrefKey, currentTime);
+                PlayerPrefs.SetFloat(BestTimePrefKey, playerTime);
                 PlayerPrefs.Save();
                 print("TIME UPDATED");
             }
+
+            onTimeStop.Invoke(playerTime);
         }
+
     }
 }
