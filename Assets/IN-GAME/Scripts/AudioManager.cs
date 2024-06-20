@@ -27,11 +27,10 @@ namespace safariSort
 
         private void Awake()
         {
-            // Singleton pattern to ensure only one instance of AudioManager exists
+            // Singleton pattern 
             if (instance == null)
             {
                 instance = this;
-                DontDestroyOnLoad(gameObject); // Keep AudioManager across scenes
             }
             else
             {

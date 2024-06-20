@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using static safariSort.GameData;
 
 
@@ -16,16 +18,7 @@ namespace safariSort
         [SerializeField] Transform habitatGroupLayout;
         [SerializeField] Image visualImageRef;
 
-        [Header("COLOR REF")]
-        [SerializeField] Color originalColor;
-        [SerializeField] Color correctGuessColor;
-        [SerializeField] Color WrongGuessColor;
-
         public static GameManager instance;
-
-        private AudioManager audioManager;
-        private UIManager uiManager;
-
         private List<AnimalData> shuffledAnimals;
         private List<HabitatData> shuffledHabitats;
 
@@ -45,14 +38,8 @@ namespace safariSort
         }
         private void Start()
         {
-            if (AudioManager.instance != null)
-            {
-                audioManager = AudioManager.instance;
-            }
-            originalColor=visualImageRef.color;
             shuffledAnimals = new List<AnimalData>(gameData.animals);
             shuffledHabitats = new List<HabitatData>(gameData.habitats);
-
         }
 
         public void LoadGame()
@@ -108,8 +95,8 @@ namespace safariSort
             foreach (var habitatData in shuffledHabitats)
             {
                 // Instantiate the animal prefab and get its DragAndDrop component
-                GameObject newAnimal = Instantiate(gameData.habitatPrefab, habitatGroupLayout);
-                temp = newAnimal.GetComponent<Habitat>();
+                GameObject newHabitat = Instantiate(gameData.habitatPrefab, habitatGroupLayout);
+                temp = newHabitat.GetComponent<Habitat>();
 
                 // Assign properties to the DragAndDrop component
                 temp.HabitatName.text = habitatData.habitatName;
@@ -118,27 +105,11 @@ namespace safariSort
             }
         }
 
-        public void CorrectGuess()
-        {
-            Debug.Log("Correct Guess");
-            audioManager.PlayCorrectGuessSound();
-            ShowCorrectVisual();
-
-        }
-
-        public void WrongGuess()
-        {
-            Debug.Log("Wrong Guess");
-            audioManager.PlayWrongGuessSound();
-            ShowWrongVisual();
-        }
-
         public void AllAnimalSorted()
         {
             Debug.Log("ALL ANIMAL SORTED");
             gameTimer.StopTimer();
-            audioManager.PlayWinSound();
-
+        
         }
 
         public void AnimalLayoutGroup(bool isEnabled)
@@ -160,24 +131,6 @@ namespace safariSort
         }
 
         #endregion
-
-        #region Visual
-        public void ShowCorrectVisual()
-        {
-            visualImageRef.color=correctGuessColor;
-            Invoke(nameof(setoriginalColor), 0.5f);
-        }
-        public void ShowWrongVisual()
-        {
-            visualImageRef.color = WrongGuessColor;
-            Invoke(nameof(setoriginalColor), 0.5f);
-        }
-        private void setoriginalColor()
-        {
-           visualImageRef.color=originalColor;
-        }
-        #endregion
-
     }
 
 }

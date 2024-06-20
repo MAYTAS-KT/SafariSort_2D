@@ -9,6 +9,7 @@ namespace safariSort
         public HabitatType habitatType;
         public Image habitatImage;
         public TextMeshProUGUI HabitatName;
+        public Image habitatFrame;
     }
 
 }
