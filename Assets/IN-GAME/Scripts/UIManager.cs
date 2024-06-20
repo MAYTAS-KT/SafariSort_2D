@@ -39,6 +39,8 @@ namespace safariSort
 
         [Header("SCRIPT REF")]
         [SerializeField] GameTimer gameTimer;
+
+        
         private AudioManager audioManager;
 
         private void Start()
@@ -164,5 +166,6 @@ namespace safariSort
             BestTimeText.text = string.Format("Best Time - {0:00}:{1:00}", minutes, seconds);
             BestTimeText_GameOver.text = string.Format("Best Time - {0:00}:{1:00}", minutes, seconds);
         }
+
     }
 }

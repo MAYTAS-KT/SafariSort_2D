@@ -12,14 +12,24 @@ namespace safariSort
 
         [SerializeField] GameTimer gameTimer;
         [SerializeField] GameData gameData;
-        private AudioManager audioManager;
         [SerializeField] LayoutGroup animalLayoutGroup;
-        [SerializeField] LayoutGroup habitatGroupLayout;
+        [SerializeField] Transform habitatGroupLayout;
+        [SerializeField] Image visualImageRef;
 
+        [Header("COLOR REF")]
+        [SerializeField] Color originalColor;
+        [SerializeField] Color correctGuessColor;
+        [SerializeField] Color WrongGuessColor;
 
         public static GameManager instance;
+
+        private AudioManager audioManager;
+        private UIManager uiManager;
+
         private List<AnimalData> shuffledAnimals;
         private List<HabitatData> shuffledHabitats;
+
+        
 
         private void Awake()
         {
@@ -39,7 +49,7 @@ namespace safariSort
             {
                 audioManager = AudioManager.instance;
             }
-
+            originalColor=visualImageRef.color;
             shuffledAnimals = new List<AnimalData>(gameData.animals);
             shuffledHabitats = new List<HabitatData>(gameData.habitats);
 
@@ -87,9 +97,9 @@ namespace safariSort
         {
             Habitat temp;
 
-            if (habitatGroupLayout.transform.childCount > 0)//USED FOR RESETTING 
+            if (habitatGroupLayout.childCount > 0)//USED FOR RESETTING 
             {
-                foreach (Transform child in habitatGroupLayout.transform)
+                foreach (Transform child in habitatGroupLayout)
                 {
                     Destroy(child.gameObject);
                 }
@@ -98,7 +108,7 @@ namespace safariSort
             foreach (var habitatData in shuffledHabitats)
             {
                 // Instantiate the animal prefab and get its DragAndDrop component
-                GameObject newAnimal = Instantiate(gameData.habitatPrefab, habitatGroupLayout.transform);
+                GameObject newAnimal = Instantiate(gameData.habitatPrefab, habitatGroupLayout);
                 temp = newAnimal.GetComponent<Habitat>();
 
                 // Assign properties to the DragAndDrop component
@@ -112,12 +122,15 @@ namespace safariSort
         {
             Debug.Log("Correct Guess");
             audioManager.PlayCorrectGuessSound();
+            ShowCorrectVisual();
+
         }
 
         public void WrongGuess()
         {
             Debug.Log("Wrong Guess");
             audioManager.PlayWrongGuessSound();
+            ShowWrongVisual();
         }
 
         public void AllAnimalSorted()
@@ -146,6 +159,23 @@ namespace safariSort
             }
         }
 
+        #endregion
+
+        #region Visual
+        public void ShowCorrectVisual()
+        {
+            visualImageRef.color=correctGuessColor;
+            Invoke(nameof(setoriginalColor), 0.5f);
+        }
+        public void ShowWrongVisual()
+        {
+            visualImageRef.color = WrongGuessColor;
+            Invoke(nameof(setoriginalColor), 0.5f);
+        }
+        private void setoriginalColor()
+        {
+           visualImageRef.color=originalColor;
+        }
         #endregion
 
     }

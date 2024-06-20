@@ -376,7 +376,11 @@ MonoBehaviour:
   gameTimer: {fileID: 1577410155}
   gameData: {fileID: 11400000, guid: 3b0d6f8a1fa9c1346aba8d6d590081c4, type: 2}
   animalLayoutGroup: {fileID: 944180367}
-  habitatGroupLayout: {fileID: 204462463}
+  habitatGroupLayout: {fileID: 204462459}
+  visualImageRef: {fileID: 204462461}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  correctGuessColor: {r: 0.02688384, g: 1, b: 0, a: 1}
+  WrongGuessColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &188073621
 Transform:
   m_ObjectHideFlags: 0

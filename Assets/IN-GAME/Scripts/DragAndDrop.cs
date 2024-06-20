@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static safariSort.GameData;
@@ -16,7 +17,6 @@ namespace safariSort
         private int startChildIndex;
         private Transform parentToReturnTo = null;
         private CanvasGroup canvasGroup;
-
 
         private void Start()
         {
@@ -75,7 +75,6 @@ namespace safariSort
                         GameManager.instance.WrongGuess();//selected wrong habitat
                         Destroy(gameObject);
                     }
-
                 }
 
                 if (parentToReturnTo.transform.GetChildCount()==0)
