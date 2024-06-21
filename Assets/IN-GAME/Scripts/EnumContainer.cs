@@ -1,5 +1,3 @@
-using System;
-
 namespace safariSort
 {
     public enum HabitatType

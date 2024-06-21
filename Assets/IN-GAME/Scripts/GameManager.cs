@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using static safariSort.GameData;
 
 
@@ -34,6 +31,7 @@ namespace safariSort
                 Destroy(gameObject);
             }
         }
+
         private void Start()
         {
             shuffledAnimals = new List<AnimalData>(gameData.animals);
@@ -104,6 +102,7 @@ namespace safariSort
             animalLayoutGroup.enabled = isEnabled;
         }
 
+
         #region Shuffle Logic
 
         private void ShuffleList<T>(List<T> list)
@@ -118,6 +117,7 @@ namespace safariSort
         }
 
         #endregion
+
 
         public void OnDestroy()
         {

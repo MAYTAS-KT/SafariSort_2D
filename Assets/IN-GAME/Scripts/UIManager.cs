@@ -72,7 +72,19 @@ namespace safariSort
             restartBtn_GameOver.onClick.AddListener(RestartGame);
         }
 
-        
+        private void SetAudioIcon()
+        {
+            if (audioManager.IsAudioEnabled())
+            {
+                audioIcon.sprite = audioOn;
+            }
+            else
+            {
+                audioIcon.sprite = audioOff;
+            }
+        }
+
+        #region Button Functions
 
         private void RestartGame()
         {
@@ -86,19 +98,6 @@ namespace safariSort
             PausePanel.SetActive(false);
 
         }
-
-        private void SetAudioIcon()
-        {
-            if (audioManager.IsAudioEnabled())
-            {
-                audioIcon.sprite = audioOn;
-            }
-            else
-            {
-                audioIcon.sprite = audioOff;
-            }
-        }
-
         private void Options()
         {
 
@@ -118,11 +117,6 @@ namespace safariSort
             audioManager.PlayClicKSound();
             audioManager.ChangeToGameMusic();
 
-        }
-
-        private void Quit()
-        {
-            Application.Quit();
         }
 
         private void Setting()
@@ -154,6 +148,14 @@ namespace safariSort
             audioManager.PlayClicKSound();
         }
 
+        private void Quit()
+        {
+            Application.Quit();
+        }
+
+        #endregion
+
+        #region Time SetUp
         private void SetBestTime()
         {
             float time = PlayerPrefs.GetFloat(gameTimer.BestTimePrefKey, 0);
@@ -170,8 +172,10 @@ namespace safariSort
             YourTimeText_GameOver.text = string.Format("Your Time - {0:00}:{1:00}", minutes, seconds);
             SetBestTime();
 
-            Invoke(nameof(ShowWinPopUP),0.5f);
+            Invoke(nameof(ShowWinPopUP), 0.5f);
         }
+
+        #endregion
 
         public void ShowWinPopUP()
         {

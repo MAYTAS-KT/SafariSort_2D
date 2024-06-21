@@ -29,14 +29,14 @@ namespace safariSort
 
         #region DoTween Animations
 
-        public void PerformVibrationAnimation()
+        public void PerformVibrationAnimation()//Wrong guess
         {
             Color originalColor = habitatFrame.color;
             habitatFrame.color = Color.red;
             transform.DOShakePosition(0.5f, 20f, 10, 90f).OnComplete(() => habitatFrame.color = originalColor);
         }
 
-        public void PerformCorrectAnimation()
+        public void PerformCorrectAnimation()//correct guess
         {
             Color originalColor = habitatFrame.color;
             habitatFrame.color = Color.green;

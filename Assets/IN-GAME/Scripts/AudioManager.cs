@@ -9,13 +9,13 @@ namespace safariSort
         public static AudioManager instance;
 
         [Header("AUIDO CLIPS")]
-        public AudioClip mainMenuMusic;
-        public AudioClip gameMusic;
-        public AudioClip correctGuessClip;
-        public AudioClip wrongGuessClip;
-        public AudioClip winClip;
-        public AudioClip errorClip;
-        public AudioClip ClickClip;
+        [SerializeField] AudioClip mainMenuMusic;
+        [SerializeField] AudioClip gameMusic;
+        [SerializeField] AudioClip correctGuessClip;
+        [SerializeField] AudioClip wrongGuessClip;
+        [SerializeField] AudioClip winClip;
+        [SerializeField] AudioClip errorClip;
+        [SerializeField] AudioClip ClickClip;
 
         [Header("AUIDO SOURCE")]
         [SerializeField] AudioSource musicSource;
@@ -49,16 +49,17 @@ namespace safariSort
 
         private void Start()
         {
-            // Load audio preference on start
-            bool audioEnabled = PlayerPrefs.GetInt(AudioPrefKey, 1) == 1; // Default to true if not set
 
+            bool audioEnabled = PlayerPrefs.GetInt(AudioPrefKey, 1) == 1; // Default to true if not set
             // Set initial audio state
             AudioListener.volume = audioEnabled ? 1 : 0;
 
             PlayMainMenuMusic();
         }
 
-       
+
+        #region SFX Play
+
         public void PlayClicKSound()
         {
             PlaySoundEffect(ClickClip);
@@ -89,22 +90,10 @@ namespace safariSort
             soundEffectSource.PlayOneShot(clip);
         }
 
-        public void PauseMusic()
-        {
-            musicSource.Pause();
-        }
-
-        public void ResumeMusic()
-        {
-            musicSource.UnPause();
-        }
-
-        public void StopMusic()
-        {
-            musicSource.Stop();
-        }
+        #endregion
 
         #region BG MUSIC
+
         public void PlayMainMenuMusic()
         {
             if (musicSource.clip != mainMenuMusic)

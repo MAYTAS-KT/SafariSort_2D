@@ -30,6 +30,9 @@ namespace safariSort
             animalText.text=animalData.animalName;
         }
 
+        #region DragFunctions
+
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (AudioManager.instance != null)
@@ -99,9 +102,11 @@ namespace safariSort
             GameManager.instance.AnimalLayoutGroup(true);//Arrange Animal Layout group
         }
 
+        #endregion
+
         #region Dotween Functions
 
-       
+
         private void PerformScaleIntoImageAnimation()
         {
             transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() =>

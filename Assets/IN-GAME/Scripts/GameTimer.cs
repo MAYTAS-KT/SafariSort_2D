@@ -11,7 +11,7 @@ namespace safariSort
         [Header("TEXT")]
         public TextMeshProUGUI timerText;
 
-        public UnityEvent<float> onTimeStop; // Event to trigger when time is up
+        public UnityEvent<float> onTimeStop;
         private IEnumerator timerRef;
         private float playerTime;
 
